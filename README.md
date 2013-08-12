@@ -22,6 +22,21 @@ app.use passport.session()
 app.use app.router
 ```
 
+In your Express routes, you might do something like the following to ensure that all endpoints require authentication.
+
+```javascript
+ensureAuthenticated = (req, res, next) ->
+  if req.isAuthenticated() or req.path is '/login'
+    return next()
+  else
+    res.render '401', status: 401, view: 'four-o-one'
+    
+module.exports = (app) ->
+  app.all '*', ensureAuthenticated
+  # Index
+  app.post '/login', passport.authenticate('zuul'), (req, res, next) -> res.json req.user
+```
+
 ## Documentation
 This strategy for [Passport](http://passportjs.org/) authentication in Node.js will operate on the ALM Zuul api. When using this strategy 'req.user' will be the key/username object returned by 'zuul_base_url/key.js'. This includes a username, userId, and token id.
 
