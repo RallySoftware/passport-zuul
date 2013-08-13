@@ -42,11 +42,10 @@ module.exports = function (grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-coffeelint');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.registerTask('dist', ['coffeelint', 'mochaTest', 'coffee']);
+  grunt.registerTask('test', ['coffeelint', 'mochaTest']);
   grunt.registerTask('default', ['coffeelint', 'mochaTest']);
   
 };
