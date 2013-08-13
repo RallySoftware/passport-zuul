@@ -1,16 +1,16 @@
 {
   "name": "passport-zuul",
   "version": "0.0.1",
-  "description": "https://github.com/pcw216/passport-zuul",
-  "homepage": "https://github.com/pcw216/passport-zuul",
-  "bugs": "https://github.com/pcw216/passport-zuul/issues",
+  "description": "https://github.com/RallySoftware/passport-zuul",
+  "homepage": "https://github.com/RallySoftware/passport-zuul",
+  "bugs": "https://github.com/RallySoftware/passport-zuul/issues",
   "author": {
     "name": "Patrick Winters",
     "email": "pwinters@rallydev.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pcw216/passport-zuul"
+    "url": "https://github.com/RallySoftware/passport-zuul"
   },
   "licenses": [
     {
