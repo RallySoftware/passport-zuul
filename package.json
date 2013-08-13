@@ -17,6 +17,9 @@
       "type": "MIT"
     }
   ],
+  "scripts": {
+    "test": "grunt test --verbose"
+  },
   "main": "./lib/passport-zuul",
   "devDependencies": {
     "grunt-contrib-coffee": "~0.7.0",
