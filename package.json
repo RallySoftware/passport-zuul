@@ -18,7 +18,7 @@
     }
   ],
   "scripts": {
-    "test": "grunt test --verbose"
+    "test": "./node_modules/grunt-cli/bin/grunt test --verbose"
   },
   "main": "./lib/passport-zuul",
   "devDependencies": {
@@ -29,7 +29,8 @@
     "nock": "~0.22.1",
     "sinon": "~1.7.3",
     "mocha": "~1.12.0",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9"
   },
   "dependencies": {
     "passport": "~0.1.17",
