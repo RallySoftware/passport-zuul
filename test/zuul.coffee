@@ -2,7 +2,6 @@ passportZuul = require '../src/passport-zuul'
 
 should = require 'should'
 sinon = require 'sinon'
-_ = require 'underscore'
 nock = require 'nock'
 
 describe 'Zuul Strategy', () ->
@@ -30,7 +29,7 @@ describe 'Zuul Strategy', () ->
 
 	it 'should fail if the request parser returns a bad user object', () ->
 		strategy = new passportZuul.Strategy
-			parseRequest: (req, callback) -> callback null, null
+			parseRequest: (req, callback) -> callback null, {}
 		
 		spy = sinon.spy()
 		strategy.fail = spy
@@ -67,7 +66,7 @@ describe 'Zuul Strategy', () ->
 		error = null
 		strategy = null
 
-		before () ->
+		beforeEach () ->
 			strategy = new passportZuul.Strategy
 				baseUrl: 'http://zuul.test'
 			strategy.fail = fail = sinon.spy()
@@ -80,7 +79,7 @@ describe 'Zuul Strategy', () ->
 
 		it 'should fail if credentials are malformed', ()->
 			strategy._verify null, {statusCode: 200}, {}
-			error.called.should.be.true
+			fail.called.should.be.true
 
 		it 'should fail if zuul status code is not 200', ()->
 			strategy._verify null, {statusCode: 404}, {id:1, username:'username',userId:'userId'}

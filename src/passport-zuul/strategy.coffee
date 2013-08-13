@@ -2,7 +2,8 @@ passport = require 'passport'
 util = require 'util'
 BadRequestError = require './errors/BadRequestError'
 request = require 'request'
-_ = require 'underscore'
+
+util = require 'util'
 
 module.exports = class Strategy extends passport.Strategy
 
@@ -12,8 +13,8 @@ module.exports = class Strategy extends passport.Strategy
 		@name = 'zuul'
 		@options = options
 
-	authenticate: (req) => # Binding this method will cause passport to fail. the action bindings in the middleware add 'fail',etc. methods.
-		@_parseRequest req, (err, user) =>
+	authenticate: (req) -> # Binding this method will cause passport to fail. the action bindings in the middleware add 'fail',etc. methods.
+		@_parseRequest req, (err, user) ->
 			if err? then @fail new BadRequestError err
 			
 			if not user? or not user.username? or not user.password?
@@ -23,11 +24,13 @@ module.exports = class Strategy extends passport.Strategy
 			@_authenticateAtZuul username, password, @_verify
 
 	# Parse a login/authentication request and supply the callback with a user object
-	_parseRequest: (req, callback) =>
-		@options.parseRequest req, callback
+	_parseRequest: (req, callback) ->
+		self = @
+		@options.parseRequest.call @, req, (err, user) ->
+			callback.call self, err, user
 
 	# Default request parser expects to be supplied with a JSON object with username and password properties
-	_parseRequestJson: (req, callback) =>
+	_parseRequestJson: (req, callback) ->
 		if not req? or not req?.body? then callback @options.badRequestMessage || 'Missing credentials'
 		username = req.body.username
 		password = req.body.password
@@ -36,13 +39,15 @@ module.exports = class Strategy extends passport.Strategy
 			password:password
 		}
 
-	_authenticateAtZuul: (username, password, callback) =>
+	_authenticateAtZuul: (username, password, callback) ->
+		self = @
 		payload = {username, password}
 		url = "#{@options.baseUrl}/key.js"
-		request.put {url: url, body:payload, json:true}, callback
+		request.put {url: url, body:payload, json:true}, (err, res, body) ->
+			callback.call self, err, res, body
 		
 		
-	_verify: (err, res, body) =>
+	_verify: (err, res, body) ->
 		if err? then return @error err
 		if res.statusCode isnt 200 then return @fail res
 		credentials = body
