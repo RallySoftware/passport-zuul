@@ -1,12 +1,12 @@
 {
   "name": "passport-zuul",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "https://github.com/pcw216/passport-zuul",
   "homepage": "https://github.com/pcw216/passport-zuul",
   "bugs": "https://github.com/pcw216/passport-zuul/issues",
   "author": {
     "name": "Patrick Winters",
-    "email": ""
+    "email": "pwinters@rallydev.com"
   },
   "repository": {
     "type": "git",
@@ -19,16 +19,15 @@
   ],
   "main": "./lib/passport-zuul",
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.5.0",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-coffeelint": "0.0.7",
     "grunt-mocha-test": "~0.6.2",
-    "should": "~1.2.2"
+    "should": "~1.2.2",
+    "nock": "~0.22.1",
+    "sinon": "~1.7.3"
   },
   "dependencies": {
     "passport": "~0.1.17",
-    "underscore": "~1.5.1",
     "request": "~2.26.0"
   }
 }
