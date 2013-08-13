@@ -1,6 +1,6 @@
-# passport-zuul [![Build Status](https://secure.travis-ci.org/pcw216/passport-zuul.png?branch=master)](http://travis-ci.org/pcw216/passport-zuul)
+# passport-zuul [![Build Status](https://secure.travis-ci.org/RallySoftware/passport-zuul.png?branch=master)](http://travis-ci.org/RallySoftware/passport-zuul)
 
-https://github.com/pcw216/passport-zuul
+https://github.com/RallySoftware/passport-zuul
 
 ## Getting Started
 Install the module with: `npm install passport-zuul`
